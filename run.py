@@ -6,6 +6,7 @@ from mysql.connector import Error
 def setup_database(db_config):
     """Function to run setup.sql file to initialize the database schema."""
     try:
+        # First connect without specifying the database
         conn = mysql.connector.connect(
             host=db_config['host'],
             user=db_config['username'],
@@ -13,11 +14,15 @@ def setup_database(db_config):
             port=db_config['port']
         )
         cursor = conn.cursor()
+        
+        # Create database if it doesn't exist
+        cursor.execute("CREATE DATABASE IF NOT EXISTS marine_biodiversity_db")
         cursor.execute("USE marine_biodiversity_db")
 
         # Load setup.sql
         with open('setup.sql', 'r') as f:
             sql_script = f.read()
+        # Execute each statement
         for statement in sql_script.split(';'):
             if statement.strip():
                 cursor.execute(statement)
@@ -25,7 +30,7 @@ def setup_database(db_config):
         conn.commit()
         cursor.close()
         conn.close()
-        print("Database setup completed.")
+        print("Database setup completed successfully.")
     except Error as e:
         print(f"Error setting up database: {e}")
 
