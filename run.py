@@ -13,19 +13,15 @@ def setup_database(db_config):
             password=db_config['password'],
             port=db_config['port']
         )
-        cursor = conn.cursor()
+        cursor = conn.cursor(multi=True)  # Enable multiple statement execution
         
-        # Create database if it doesn't exist
-        cursor.execute("CREATE DATABASE IF NOT EXISTS marine_biodiversity_db")
-        cursor.execute("USE marine_biodiversity_db")
-
         # Load setup.sql
         with open('setup.sql', 'r') as f:
             sql_script = f.read()
-        # Execute each statement
-        for statement in sql_script.split(';'):
-            if statement.strip():
-                cursor.execute(statement)
+            
+        # Execute the entire script
+        for result in cursor.execute(sql_script, multi=True):
+            pass  # We need to iterate through results for the execution to complete
         
         conn.commit()
         cursor.close()
