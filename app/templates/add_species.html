@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Species</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Add a New Species</h2>
+        <form action="{{ url_for('add_species') }}" method="POST">
+            <input type="text" name="common_name" placeholder="Common Name" required>
+            <input type="text" name="scientific_name" placeholder="Scientific Name" required>
+            <input type="text" name="habitat" placeholder="Habitat">
+            <input type="text" name="migratory_pattern" placeholder="Migratory Pattern">
+            <input type="text" name="seasonal_behavior" placeholder="Seasonal Behavior">
+            <button type="submit">Add Species</button>
+        </form>
+    </div>
+</body>
+</html>

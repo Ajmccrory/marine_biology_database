@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Species Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>{{ species.common_name }} ({{ species.scientific_name }})</h2>
+        <p><strong>Habitat:</strong> {{ species.habitat }}</p>
+        <p><strong>Migratory Pattern:</strong> {{ species.migratory_pattern }}</p>
+        <p><strong>Seasonal Behavior:</strong> {{ species.seasonal_behavior }}</p>
+        <h3>Observations</h3>
+        <ul>
+            {% for obs in species.observations %}
+                <li>
+                    Observed by {{ obs.researcher.name }} on {{ obs.observation_date }} at {{ obs.location }}.
+                    Notes: {{ obs.notes }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

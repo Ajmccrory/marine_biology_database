@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Marine Biodiversity Database</title>
+</head>
+<body>
+    <h1>Species Observations</h1>
+    <a href="{{ url_for('add_species') }}">Add New Species</a>
+    <ul>
+    {% for sp in species %}
+        <li>{{ sp.common_name }} ({{ sp.scientific_name }})</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
