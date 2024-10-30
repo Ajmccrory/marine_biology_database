@@ -14,7 +14,7 @@ def setup_database(db_config):
             port=db_config['port'],
             auth_plugin='mysql_native_password'
         )
-        cursor = conn.cursor(multi=True)  # Enable multiple statement execution
+        cursor = conn.cursor()  # Enable multiple statement execution
         
         # Load setup.sql
         print("Reading setup.sql file...")
@@ -57,7 +57,7 @@ def main():
     
     # Create and run the Flask app
     app = create_app(db_config)
-    app.run(debug=True)
+    app.run()
 
 if __name__ == '__main__':
     main()
