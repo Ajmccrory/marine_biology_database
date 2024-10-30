@@ -1,6 +1,5 @@
 import mysql.connector
 from app import create_app
-from app.routes import main as main_bp
 from mysql.connector import Error
 
 def setup_database(db_config):
@@ -44,9 +43,9 @@ def get_db_config():
     """Prompt user for database connection details."""
     print("Please enter your MySQL database connection details:")
     db_config = {
-        'username': input("Username: "),
+        'username': input("Username (deafult root): ") or 'root',
         'password': input("Password: "),
-        'host': input("Host: "),
+        'host': input("Host (default localhost): ") or 'localhost',
         'port': input("Port (default 3306): ") or '3306',
         'database': 'marine_biodiversity_db'
     }

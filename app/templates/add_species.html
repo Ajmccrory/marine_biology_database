@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h2>Add a New Species</h2>
-        <form action="{{ url_for('add_species') }}" method="POST">
+        <form action="{{ url_for('main.add_species') }}" method="POST">
             <input type="text" name="common_name" placeholder="Common Name" required>
             <input type="text" name="scientific_name" placeholder="Scientific Name" required>
             <input type="text" name="habitat" placeholder="Habitat">
