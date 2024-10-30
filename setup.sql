@@ -39,3 +39,9 @@ CREATE TABLE observations (
     FOREIGN KEY (researcher_id) REFERENCES researchers(id) ON DELETE CASCADE,
     FOREIGN KEY (species_id) REFERENCES species(id) ON DELETE CASCADE
 );
+
+-- Insert example species
+INSERT INTO species (common_name, scientific_name, habitat, migratory_pattern, seasonal_behavior) VALUES
+    ('Blue Whale', 'Balaenoptera musculus', 'Open Ocean', 'Long-distance migrator', 'Summers in polar regions, winters in tropical waters'),
+    ('Green Sea Turtle', 'Chelonia mydas', 'Tropical and subtropical waters', 'Seasonal coastal migration', 'Nests on beaches during summer'),
+    ('Giant Pacific Octopus', 'Enteroctopus dofleini', 'Coastal waters', 'Non-migratory', 'More active during winter months');
