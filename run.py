@@ -12,7 +12,8 @@ def setup_database(db_config):
             host=db_config['host'],
             user=db_config['username'],
             password=db_config['password'],
-            port=db_config['port']
+            port=db_config['port'],
+            auth_plugin='mysql_native_password'
         )
         cursor = conn.cursor(multi=True)  # Enable multiple statement execution
         
