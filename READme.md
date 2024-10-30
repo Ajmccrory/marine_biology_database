@@ -20,8 +20,21 @@ cd # back into project directory afterwards
 sudo systemctl start mysql
 mysql -u root -p
  # Login
-
-
+```
 
 ### in project
  In app/config.py change yourusername and yourpassword to the systems uername and password
+
+
+ ### Common Errors
+ If there is an issue with permissions with logging in 
+ run
+ ```bash
+ sudo systemctl status mysql
+ # ensure server is running
+ exit;
+ mysql -u root -p
+ ALTER 'your username'@'localhost' IDENTIFIED WITH 'your password' BY 'mysql_native_password';
+ FLUSH PRIVLEGES;
+ ```
+
