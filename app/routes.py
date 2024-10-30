@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from app import db
-from app.models import Species
+from app.models import Species, Researcher
 
 main = Blueprint('main', __name__)
 
@@ -23,3 +23,13 @@ def add_species():
         db.session.commit()
         return redirect(url_for('main.index'))
     return render_template('add_species.html')
+
+@main.route('/researcher_data/<int:id>')
+def researcher_data(id):
+    researcher = Researcher.query.get_or_404(id)
+    return render_template('researcher_data.html', researcher=researcher)
+
+@main.route('/species_data/<int:id>')
+def species_data(id):
+    species = Species.query.get_or_404(id)
+    return render_template('species_data.html', species=species)

@@ -42,30 +42,11 @@ def get_db_config():
     return db_config
 
 def main():
-
     db_config = get_db_config()
     setup_database(db_config)
-    # Create the Flask app
-    app = create_app()
-
-    # Set the SQLALCHEMY_DATABASE_URI directly on the app config
-    app.config['SQLALCHEMY_DATABASE_URI'] = (
-        f"mysql+pymsql://{db_config['username']}:{db_config['password']}@"
-        f"{db_config['host']}:3306/{db_config['database']}"
-    )
-
-    app.register_blueprint(main_bp)
-    # Run the app
-    app.run()
-
-    app = create_app()
-
-
-
-
-
-
-    # Run Flask app
+    
+    # Create and run the Flask app
+    app = create_app(db_config)
     app.run(debug=True)
 
 if __name__ == '__main__':
